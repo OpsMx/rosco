@@ -7,8 +7,6 @@ COPY halconfig/packer              /opt/rosco/config/packer
 
 WORKDIR /packer
 
-
-
 RUN yum update && yum -y install openjdk-8-jre-headless wget unzip curl git openssh-client && \
   wget https://releases.hashicorp.com/packer/1.4.5/packer_1.4.5_linux_amd64.zip && \
   unzip packer_1.4.5_linux_amd64.zip && \
@@ -35,7 +33,7 @@ RUN mkdir kustomize && \
 
 ENV PATH "kustomize:$PATH"
 
-RUN adduser spinnaker
-RUN mkdir -p /opt/rosco/plugins 
+RUN useradd spinnaker
+RUN mkdir -p /opt/rosco/plugins
 USER spinnaker
 CMD ["/opt/rosco/bin/rosco"]
