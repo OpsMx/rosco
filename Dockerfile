@@ -1,3 +1,4 @@
+
 FROM registry.access.redhat.com/ubi8/ubi
 MAINTAINER sig-platform@spinnaker.io
 COPY rosco-web/build/install/rosco /opt/rosco
@@ -6,7 +7,9 @@ COPY halconfig/packer              /opt/rosco/config/packer
 
 WORKDIR /packer
 
-RUN yum -y install java-11-openjdk-headless.x86_64 wget vim wget unzip curl openssl && \
+
+
+RUN apt-get update && apt-get -y install openjdk-8-jre-headless wget unzip curl git openssh-client && \
   wget https://releases.hashicorp.com/packer/1.4.5/packer_1.4.5_linux_amd64.zip && \
   unzip packer_1.4.5_linux_amd64.zip && \
   rm packer_1.4.5_linux_amd64.zip
@@ -36,4 +39,3 @@ RUN adduser spinnaker
 RUN mkdir -p /opt/rosco/plugins 
 USER spinnaker
 CMD ["/opt/rosco/bin/rosco"]
-
