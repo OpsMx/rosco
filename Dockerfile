@@ -7,7 +7,7 @@ COPY halconfig/packer              /opt/rosco/config/packer
 
 WORKDIR /packer
 
-RUN yum install -y java-11-openjdk-headless.x86_64 wget unzip curl git openssh-clients && \
+RUN yum install -y java-11-openjdk-headless.x86_64 wget unzip curl git openssh-clients  openssl && \
   wget https://releases.hashicorp.com/packer/1.4.5/packer_1.4.5_linux_amd64.zip && \
   unzip packer_1.4.5_linux_amd64.zip && \
   rm packer_1.4.5_linux_amd64.zip
